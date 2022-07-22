@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Library</h1>
+  </header>
+  <main>
+    <form>
+        <fieldset>
+            <legend>Add a book</legend>
+            <label for="title">Title*</label>
+            <input type="text" name="title" id="title" required>
+            <label for="author">Author*</label>
+            <input type="text" name="author" id="author" required>
+            <label for="pages">Pages</label>
+            <input type="number" name="pages" id="pages">
+            <select name="isRead" id="isRead">
+                <option value="true">Read</option>
+                <option value="false">Not read</option>
+            </select>
+            <button type="submit" id="add">Add</button>
+        </fieldset>
+    </form>
+    <div class="books">
+    </div>
+  </main>  
+  <footer>
+    <p>Made by <a href="https://github.com/albinazs">albinazs</a></p>
+  </footer>
+</body>
+</html>
