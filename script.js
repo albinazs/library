@@ -14,6 +14,14 @@ function Book(title, author, pages, isRead) {
     this.isRead = isRead   
 }
 
+Book.prototype.toggleReadStatus = function() {
+    if(this.isRead) {
+        this.isRead = false;
+    } else {
+        this.isRead = true;
+    }    
+}
+
 function addBookToLibrary() {
     event.preventDefault();
     let title = formTitle.value;
@@ -47,11 +55,18 @@ function updateDisplay() {
             const displayIsRead = document.createElement('p');
             displayIsRead.textContent = book.isRead;       
             bookCard.appendChild(displayIsRead);
+            //buttons
             const removeBook = document.createElement('button');
             removeBook.textContent = "Remove";
             removeBook.dataset.number = index;
             removeBook.addEventListener('click', removeBookFromLibrary);
             bookCard.appendChild(removeBook);
+
+            const changeStatus = document.createElement('button');
+            changeStatus.textContent = book.isRead;
+            bookCard.appendChild(changeStatus);
+            changeStatus.addEventListener('click', () => {book.toggleReadStatus()
+                changeStatus.textContent = book.isRead});            
     })
 }
 
@@ -61,12 +76,5 @@ function removeBookFromLibrary(e) {
     updateDisplay();
 }
 
-
-Book.prototype.intro = function() {
-    // change return to human friendly (not read yet instead of false)
-    //if(isRead) - read, else - not read yet
-    //this.title? or title
-    return `${title}, ${author}, ${pages} pages, isRead` 
-}
 
 
