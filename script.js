@@ -28,12 +28,37 @@ function addBookToLibrary() {
 addBook.addEventListener('click', addBookToLibrary);
 
 function updateDisplay() {
-    books.textContent = '';
-    myLibrary.forEach(book => {
-        const displayTitle = document.createElement('p');
-        displayTitle.textContent = book.title;
-        books.appendChild(displayTitle);
+    while(books.firstChild) {
+        books.removeChild(books.lastChild);
+    }
+    myLibrary.forEach((book, index)=> {
+        const bookCard = document.createElement('div');
+        bookCard.classList.add('bookCard')
+        books.appendChild(bookCard);
+            const displayTitle = document.createElement('p');
+            displayTitle.textContent = book.title;
+            bookCard.appendChild(displayTitle);
+            const displayAuthor = document.createElement('p')
+            displayAuthor.textContent = book.author;       
+            bookCard.appendChild(displayAuthor);
+            const displayPages = document.createElement('p');
+            displayPages.textContent = book.pages;       
+            bookCard.appendChild(displayPages);
+            const displayIsRead = document.createElement('p');
+            displayIsRead.textContent = book.isRead;       
+            bookCard.appendChild(displayIsRead);
+            const removeBook = document.createElement('button');
+            removeBook.textContent = "Remove";
+            removeBook.dataset.number = index;
+            removeBook.addEventListener('click', removeBookFromLibrary);
+            bookCard.appendChild(removeBook);
     })
+}
+
+function removeBookFromLibrary(e) {
+    let toDelete = e.target.dataset.number;
+    myLibrary.splice(toDelete, 1);
+    updateDisplay();
 }
 
 
