@@ -28,12 +28,14 @@ function addBookToLibrary() {
     let author = formAuthor.value;
     let pages = formPages.value;
     let isRead = formIsRead.value;
+    // doesn't work
+    if(formTitle === undefined) {
+        return;
+    }
     const book = new Book(title, author, pages, isRead);
     myLibrary.push(book);
     updateDisplay();
 }
-
-addBook.addEventListener('click', addBookToLibrary);
 
 function updateDisplay() {
     while(books.firstChild) {
@@ -52,21 +54,24 @@ function updateDisplay() {
             const displayPages = document.createElement('p');
             displayPages.textContent = book.pages;       
             bookCard.appendChild(displayPages);
-            const displayIsRead = document.createElement('p');
-            displayIsRead.textContent = book.isRead;       
-            bookCard.appendChild(displayIsRead);
             //buttons
+            const changeStatus = document.createElement('button');
+            book.isRead 
+                    ? changeStatus.textContent = 'Read'
+                    : changeStatus.textContent = 'Not read';   
+            bookCard.appendChild(changeStatus);
+            changeStatus.addEventListener('click', () => {
+                book.toggleReadStatus();
+                book.isRead 
+                    ? changeStatus.textContent = 'Read'
+                    : changeStatus.textContent = 'Not read'               
+            });   
+            
             const removeBook = document.createElement('button');
             removeBook.textContent = "Remove";
             removeBook.dataset.number = index;
             removeBook.addEventListener('click', removeBookFromLibrary);
             bookCard.appendChild(removeBook);
-
-            const changeStatus = document.createElement('button');
-            changeStatus.textContent = book.isRead;
-            bookCard.appendChild(changeStatus);
-            changeStatus.addEventListener('click', () => {book.toggleReadStatus()
-                changeStatus.textContent = book.isRead});            
     })
 }
 
@@ -75,6 +80,8 @@ function removeBookFromLibrary(e) {
     myLibrary.splice(toDelete, 1);
     updateDisplay();
 }
+
+addBook.addEventListener('click', addBookToLibrary);
 
 
 
