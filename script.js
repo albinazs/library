@@ -3,6 +3,9 @@ const formAuthor = document.querySelector('#author');
 const formPages = document.querySelector('#pages');
 const formIsRead = document.querySelector('#isRead');
 const addBook = document.querySelector('#add');
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
+const submitBook = document.querySelector('#submit');
 const books = document.querySelector('.books');
 
 let myLibrary = [];
@@ -80,8 +83,30 @@ function removeBookFromLibrary(e) {
     myLibrary.splice(toDelete, 1);
     updateDisplay();
 }
+addBook.addEventListener('click', openModal);
 
-addBook.addEventListener('click', addBookToLibrary);
+submitBook.addEventListener('click', () => {
+    addBookToLibrary()
+    closeModal()
+    clearTextContent()
+});
+
+function openModal() {
+    modal.classList.add('active');
+    overlay.classList.add('active');
+}
+
+function closeModal() {
+    modal.classList.remove('active');
+    overlay.classList.remove('active');
+}
+
+function clearTextContent() {
+    formTitle.value = '';
+    formAuthor.value = '';
+    formPages.value = '';
+    formIsRead.value = '';
+}
 
 
 

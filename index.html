@@ -17,6 +17,11 @@
   </header>
   <main>
     <div class="main container">
+        <button id="add">+ Add book</button>        
+        <div class="books">
+        </div>
+    </div>
+    <div class="modal">
         <form>
             <fieldset>
                 <legend>Add a book</legend>
@@ -26,16 +31,15 @@
                 <input type="text" name="author" id="author" required>
                 <label for="pages">Pages</label>
                 <input type="number" name="pages" id="pages" required>
-                <select name="isRead" id="isRead">
+                <select name="isRead" id="isRead" required>
                     <option value="true">Read</option>
                     <option value="false">Not read</option>
                 </select>
-                <button type="submit" id="add">Add</button>
+                <button type="submit" id="submit">Add</button>
             </fieldset>
         </form>
-        <div class="books">
-        </div>
     </div>
+    <div class="overlay"></div>
   </main>  
   <footer>
     <p>Made by <a href="https://github.com/albinazs">albinazs</a></p>
