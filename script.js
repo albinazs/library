@@ -46,11 +46,11 @@ function closeModal() {
     overlay.classList.remove('active');
 }
 
-function clearTextContent() {
+function clearForm() {
     formTitle.value = '';
     formAuthor.value = '';
     formPages.value = '';
-    formIsRead.value = '';
+    formIsRead.checked = false;
 }
 
 function updateDisplay() {
@@ -63,35 +63,35 @@ function createBookCard(book, index) {
     const displayTitle = document.createElement('p');
     const displayAuthor = document.createElement('p');
     const displayPages = document.createElement('p');
-
+    const changeStatus = document.createElement('button');
+    const removeBook = document.createElement('button');
+    
     bookCard.classList.add('bookCard');
             
     displayTitle.textContent = book.title;
     displayAuthor.textContent = book.author;
-    displayPages.textContent = `${book.pages} pages`;  
+    displayPages.textContent = `${book.pages} pages`;
+    book.isRead 
+            ? changeStatus.textContent = 'Read'
+            : changeStatus.textContent = 'Not read'
+    removeBook.textContent = "Remove";  
 
     books.appendChild(bookCard);
     bookCard.appendChild(displayTitle);    
     bookCard.appendChild(displayAuthor);                            
     bookCard.appendChild(displayPages);
-    
-    const changeStatus = document.createElement('button');
-    book.isRead 
-            ? changeStatus.textContent = 'Read'
-            : changeStatus.textContent = 'Not read'
     bookCard.appendChild(changeStatus);
+    bookCard.appendChild(removeBook); 
+        
     changeStatus.addEventListener('click', () => {
         book.toggleReadStatus();
         book.isRead 
             ? changeStatus.textContent = 'Read'
             : changeStatus.textContent = 'Not read'              
         });   
-            
-    const removeBook = document.createElement('button');
-    removeBook.textContent = "Remove";
+             
     removeBook.dataset.number = index;
-    removeBook.onclick = removeBookFromLibrary;
-    bookCard.appendChild(removeBook);   
+    removeBook.onclick = removeBookFromLibrary;      
 }
 
 function resetDisplay() {
@@ -112,7 +112,7 @@ form.addEventListener('submit', (e) => {
     e.preventDefault()
     addBookToLibrary()
     closeModal()
-    clearTextContent()
+    clearForm()
 });
 
 overlay.addEventListener('click', () => {

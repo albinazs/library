@@ -1,1 +1,1 @@
-# library
+Library project built with HTML, CSS & Javascript.

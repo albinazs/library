@@ -19,12 +19,12 @@ a {
 button,
 input, 
 select {
-  border: none;
-  color: inherit;
-  font-family: inherit;
-  font-size: inherit;
-  cursor: pointer;
-  outline: none;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    outline: none;
 }
 
 body {
@@ -154,14 +154,6 @@ input[type=number] {
     font-size: 1.1rem;
 }
 
-select {
-    border: none;
-    width: 80%;
-    border-radius: var(--border-radius);
-    height: 30px;
-    font-size: 1.1rem;
-}
-
 .form-grid button {
     font-size: 1.2rem;
     background-color: white;
@@ -169,24 +161,27 @@ select {
     width: 80%
 }
 
+.form-grid div {
+    font-size: 1rem;
+}
+
 .books {
-    max-width: 1200px;
+    width: min(1200px, 100vw);
     display: grid;
-    justify-content: start;
-    align-items: start;
-    align-content: start;
     grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: repeat(auto-fit, minmax(183px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(183px, 1fr));
     padding: 40px;
     gap: 20px;
 }
 
 .bookCard {
+    display: grid;
+    justify-content: center;
     background-color: var(--grey-color);
     height: 270px;
     padding: 20px;
     text-align: center;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius);   
 }
 
 .bookCard p,
@@ -195,6 +190,10 @@ select {
     display: block;
 }
 
+.bookCard button {
+    background-color: white;
+    color: rgb(84, 82, 82);
+}
 
 footer {
     grid-column: span 3;

@@ -28,9 +28,9 @@
                 <div class="form-grid">                    
                     <input type="text" name="title" id="title" placeholder="Title" required>
                     <input type="text" name="author" id="author" placeholder="Author" required>
-                    <input type="number" name="pages" id="pages" placeholder="Number of pages" required>
+                    <input type="number" name="pages" id="pages" placeholder="Number of pages" min="1" required>
                     <div>
-                        <input type="checkbox" name="isRead" id="isRead" required>
+                        <input type="checkbox" name="isRead" id="isRead">
                         <label for="isRead">I have read this book</label>
                     </div>
                     <button type="submit" id="submit">Add</button>
