@@ -12,10 +12,10 @@ const books = document.querySelector('.books');
 let myLibrary = [];
 
 function Book(title, author, pages, isRead) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.isRead = isRead   
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.isRead = isRead;  
 }
 
 Book.prototype.toggleReadStatus = function() {
@@ -32,7 +32,6 @@ function openModal() {
 }
 
 function addBookToLibrary() {
-    //if !'' then do the rest of function
     let title = formTitle.value;
     let author = formAuthor.value;
     let pages = formPages.value;
@@ -55,41 +54,50 @@ function clearTextContent() {
 }
 
 function updateDisplay() {
+    resetDisplay();
+    myLibrary.forEach((book, index) => createBookCard(book, index));
+}
+
+function createBookCard(book, index) {
+    const bookCard = document.createElement('div');
+    const displayTitle = document.createElement('p');
+    const displayAuthor = document.createElement('p');
+    const displayPages = document.createElement('p');
+
+    bookCard.classList.add('bookCard');
+            
+    displayTitle.textContent = book.title;
+    displayAuthor.textContent = book.author;
+    displayPages.textContent = `${book.pages} pages`;  
+
+    books.appendChild(bookCard);
+    bookCard.appendChild(displayTitle);    
+    bookCard.appendChild(displayAuthor);                            
+    bookCard.appendChild(displayPages);
+            
+    const changeStatus = document.createElement('button');
+    book.isRead 
+        ? changeStatus.textContent = 'Read'
+        : changeStatus.textContent = 'Not read'
+    bookCard.appendChild(changeStatus);
+    changeStatus.addEventListener('click', () => {
+        book.toggleReadStatus();
+        book.isRead 
+            ? changeStatus.textContent = 'Read'
+            : changeStatus.textContent = 'Not read'               
+        });   
+            
+    const removeBook = document.createElement('button');
+    removeBook.textContent = "Remove";
+    removeBook.dataset.number = index;
+    removeBook.onclick = removeBookFromLibrary;
+    bookCard.appendChild(removeBook);   
+}
+
+function resetDisplay() {
     while(books.firstChild) {
         books.removeChild(books.lastChild);
     }
-    myLibrary.forEach((book, index)=> {
-        const bookCard = document.createElement('div');
-        bookCard.classList.add('bookCard')
-        books.appendChild(bookCard);
-            const displayTitle = document.createElement('p');
-            displayTitle.textContent = book.title;
-            bookCard.appendChild(displayTitle);
-            const displayAuthor = document.createElement('p');
-            displayAuthor.textContent = book.author;       
-            bookCard.appendChild(displayAuthor);
-            const displayPages = document.createElement('p');
-            displayPages.textContent = book.pages;       
-            bookCard.appendChild(displayPages);
-            //buttons
-            const changeStatus = document.createElement('button');
-            book.isRead 
-                    ? changeStatus.textContent = 'Read'
-                    : changeStatus.textContent = 'Not read'
-            bookCard.appendChild(changeStatus);
-            changeStatus.addEventListener('click', () => {
-                book.toggleReadStatus();
-                book.isRead 
-                    ? changeStatus.textContent = 'Read'
-                    : changeStatus.textContent = 'Not read'               
-            });   
-            
-            const removeBook = document.createElement('button');
-            removeBook.textContent = "Remove";
-            removeBook.dataset.number = index;
-            removeBook.addEventListener('click', removeBookFromLibrary);
-            bookCard.appendChild(removeBook);
-    })
 }
 
 function removeBookFromLibrary(e) {

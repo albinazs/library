@@ -170,20 +170,20 @@ select {
 }
 
 .books {
-    width: 1200px;
+    max-width: 1200px;
     display: grid;
     justify-content: start;
     align-items: start;
     align-content: start;
     grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 183px 183px 183px 183px 183px 183px;
+    grid-template-columns: repeat(auto-fit, minmax(183px, 1fr));
     padding: 40px;
     gap: 20px;
 }
 
 .bookCard {
     background-color: var(--grey-color);
-    height: 250px;
+    height: 270px;
     padding: 20px;
     text-align: center;
     border-radius: var(--border-radius);
@@ -192,6 +192,7 @@ select {
 .bookCard p,
 .bookCard button {
     margin-bottom: 20px;
+    display: block;
 }
 
 
