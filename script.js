@@ -35,7 +35,7 @@ function addBookToLibrary() {
     let title = formTitle.value;
     let author = formAuthor.value;
     let pages = formPages.value;
-    let isRead = formIsRead.value;
+    let isRead = formIsRead.checked;
     const book = new Book(title, author, pages, isRead);
     myLibrary.push(book);
     updateDisplay();
@@ -74,17 +74,17 @@ function createBookCard(book, index) {
     bookCard.appendChild(displayTitle);    
     bookCard.appendChild(displayAuthor);                            
     bookCard.appendChild(displayPages);
-            
+    
     const changeStatus = document.createElement('button');
     book.isRead 
-        ? changeStatus.textContent = 'Read'
-        : changeStatus.textContent = 'Not read'
+            ? changeStatus.textContent = 'Read'
+            : changeStatus.textContent = 'Not read'
     bookCard.appendChild(changeStatus);
     changeStatus.addEventListener('click', () => {
         book.toggleReadStatus();
         book.isRead 
             ? changeStatus.textContent = 'Read'
-            : changeStatus.textContent = 'Not read'               
+            : changeStatus.textContent = 'Not read'              
         });   
             
     const removeBook = document.createElement('button');
