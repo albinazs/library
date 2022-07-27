@@ -8,6 +8,7 @@
 * {
     margin: 0px;
     padding: 0px;
+    box-sizing: border-box;
 }
 
 a {
@@ -74,6 +75,17 @@ main {
 .container.main {
     flex-direction: column;
     padding: 20px;
+    font-size: 1.3rem;
+}
+
+.main button {
+    background-color: var(--green-color);
+    color: white;
+    width: 150px;
+}
+
+.main>button {
+    width: 180px;
 }
 
 .modal {
@@ -83,6 +95,7 @@ main {
     left: 50%;
     width: 300px;
     padding: 20px;
+    padding-bottom: 40px;
     border-radius: var(--border-radius);
     text-align: center;
     background-color: var(--grey-color);
@@ -115,8 +128,21 @@ fieldset {
     border: none;
 }
 
+.form-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+#isRead,
+#submit {
+    grid-column: span 2;
+}
+
 legend {
     padding: 10px 0px;
+    margin-bottom: 20px;
 }
 
 input[type=text],
@@ -124,23 +150,23 @@ input[type=number] {
     background-color: white;
     border-radius: var(--border-radius);
     padding: 5px;
-    width: min(150px, 80%);
-    font-size: 0.9rem;
-    margin-right: 30px;
+    width: 80%;
+    font-size: 1.1rem;
 }
 
 select {
     border: none;
-    width: 100px;
+    width: 80%;
     border-radius: var(--border-radius);
-    margin-right: 30px;
-    height: 28px;
+    height: 30px;
+    font-size: 1.1rem;
 }
 
-.main button {
-    background-color: var(--green-color);
-    color: white;
-    width: 150px;
+.form-grid button {
+    font-size: 1.2rem;
+    background-color: white;
+    color: var(--green-color);
+    width: 80%
 }
 
 .books {

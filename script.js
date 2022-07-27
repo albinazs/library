@@ -2,6 +2,7 @@ const formTitle = document.querySelector('#title');
 const formAuthor = document.querySelector('#author');
 const formPages = document.querySelector('#pages');
 const formIsRead = document.querySelector('#isRead');
+const form = document.querySelector('form');
 const addBook = document.querySelector('#add');
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
@@ -25,19 +26,32 @@ Book.prototype.toggleReadStatus = function() {
     }    
 }
 
+function openModal() {
+    modal.classList.add('active');
+    overlay.classList.add('active');
+}
+
 function addBookToLibrary() {
-    event.preventDefault();
+    //if !'' then do the rest of function
     let title = formTitle.value;
     let author = formAuthor.value;
     let pages = formPages.value;
     let isRead = formIsRead.value;
-    // doesn't work
-    if(formTitle === undefined) {
-        return;
-    }
     const book = new Book(title, author, pages, isRead);
     myLibrary.push(book);
     updateDisplay();
+}
+
+function closeModal() {
+    modal.classList.remove('active');
+    overlay.classList.remove('active');
+}
+
+function clearTextContent() {
+    formTitle.value = '';
+    formAuthor.value = '';
+    formPages.value = '';
+    formIsRead.value = '';
 }
 
 function updateDisplay() {
@@ -51,7 +65,7 @@ function updateDisplay() {
             const displayTitle = document.createElement('p');
             displayTitle.textContent = book.title;
             bookCard.appendChild(displayTitle);
-            const displayAuthor = document.createElement('p')
+            const displayAuthor = document.createElement('p');
             displayAuthor.textContent = book.author;       
             bookCard.appendChild(displayAuthor);
             const displayPages = document.createElement('p');
@@ -61,7 +75,7 @@ function updateDisplay() {
             const changeStatus = document.createElement('button');
             book.isRead 
                     ? changeStatus.textContent = 'Read'
-                    : changeStatus.textContent = 'Not read';   
+                    : changeStatus.textContent = 'Not read'
             bookCard.appendChild(changeStatus);
             changeStatus.addEventListener('click', () => {
                 book.toggleReadStatus();
@@ -83,30 +97,19 @@ function removeBookFromLibrary(e) {
     myLibrary.splice(toDelete, 1);
     updateDisplay();
 }
+
 addBook.addEventListener('click', openModal);
 
-submitBook.addEventListener('click', () => {
+form.addEventListener('submit', (e) => {
+    e.preventDefault()
     addBookToLibrary()
     closeModal()
     clearTextContent()
 });
 
-function openModal() {
-    modal.classList.add('active');
-    overlay.classList.add('active');
-}
-
-function closeModal() {
-    modal.classList.remove('active');
-    overlay.classList.remove('active');
-}
-
-function clearTextContent() {
-    formTitle.value = '';
-    formAuthor.value = '';
-    formPages.value = '';
-    formIsRead.value = '';
-}
-
+overlay.addEventListener('click', () => {
+    closeModal()
+    clearTextContent()
+});
 
 
