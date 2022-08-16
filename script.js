@@ -11,19 +11,21 @@ const books = document.querySelector('.books');
 
 let myLibrary = [];
 
-function Book(title, author, pages, isRead) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;  
-}
+class Book {
+    constructor(title, author, pages, isRead) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead; 
+    }
 
-Book.prototype.toggleReadStatus = function() {
-    if(this.isRead) {
-        this.isRead = false;
-    } else {
-        this.isRead = true;
-    }    
+    toggleReadStatus() {
+        if(this.isRead) {
+            this.isRead = false;
+        } else {
+            this.isRead = true;
+        }
+    }        
 }
 
 function openModal() {
@@ -119,5 +121,3 @@ overlay.addEventListener('click', () => {
     closeModal()
     clearTextContent()
 });
-
-
